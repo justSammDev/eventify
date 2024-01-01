@@ -52,6 +52,7 @@ export default async function Home() {
           emptyStateSubtext="Come back Later"
           collectionType="All_Events"
           page={1}
+          limit={6}
           totalPages={2}
         />
       </section>
