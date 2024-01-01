@@ -51,7 +51,6 @@ export async function POST(req: Request) {
     });
   }
 
-  // Get the ID and type
   const { id } = evt.data;
   const eventType = evt.type;
 
@@ -71,14 +70,16 @@ export async function POST(req: Request) {
     const newUser = await createUser(user);
 
     if (newUser) {
-      await clerkClient.users.updateUserMetadata(id, {
+      await clerkClient.users.updateUserMetadata(newUser.clerkId, {
         publicMetadata: {
           userId: newUser._id,
         },
       });
     }
+
     return NextResponse.json({ message: "OK", user: newUser });
   }
+
   if (eventType === "user.updated") {
     const { id, image_url, first_name, last_name, username } = evt.data;
 
